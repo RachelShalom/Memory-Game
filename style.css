@@ -22,3 +22,8 @@
 .random-image {
     display: none;
 }
+
+.matched-image {
+    opacity: 0.3;
+    pointer-events: none;
+}
