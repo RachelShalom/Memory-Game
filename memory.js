@@ -61,8 +61,7 @@ $(".card").click(function() {
                 cardObjects[id1].opened = false;
                 $(".animate").animate({ height: "200px" }, 5000, function() {
                     $(this).children("img").toggleClass("random-image");
-                    // $("#" + id0).children("img").toggleClass("random-image");
-                    //$("#" + id1).children("img").toggleClass("random-image");
+
                 });
             }
             $("#" + id0).removeClass("animate");
