@@ -19,11 +19,13 @@
     height: 100%;
 }
 
-.random-image {
+.card-closed {
     display: none;
 }
 
-.matched-image {
+.matched-card {
     opacity: 0.3;
     pointer-events: none;
 }
+
+.card-opened {}
