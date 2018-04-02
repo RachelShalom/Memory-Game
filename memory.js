@@ -5,6 +5,7 @@ let images = ["https://source.unsplash.com/rqABly7c9j0", "https://source.unsplas
     "https://source.unsplash.com/DoSDQvzjeH0", "https://source.unsplash.com/xaxIzsDQUJM", "https://source.unsplash.com/lElegSg89Ds",
     "https://source.unsplash.com/DwhK2zGMdy0", "https://source.unsplash.com/A3ZOLkgomZE"
 ];
+var timer;
 // a varuable to count the number of moves
 var moves = 0;
 // a variable to count the number of opened cards
@@ -13,12 +14,10 @@ var numOpened = 0;
 var openedCards;
 //  a nodeList of all cards
 var cards = $(".card");
-//shuffle all images 
-shuffle(images);
-//distribute images on the board
-for (var i = 0; i < cards.length; i++) {
-    $(cards[i]).find("img").attr("src", images[i]);
-}
+//shuffle all images randomally on the board
+shuffleCards();
+startTimer();
+
 // when user click a card:
 $(".card").on("click", function() {
     //open the card 
@@ -54,7 +53,7 @@ $(".card").on("click", function() {
 
 
 
-
+//A restart button allows the player to reset the game board, the timer, and the star rating.
 // restart the game when user click the restart button
 $(".restart").on("click", function() {
     //close all cards
@@ -66,9 +65,48 @@ $(".restart").on("click", function() {
         displayMoves();
         // initiate the number of stars to be 3
         $("ul li").css("display", "inline-block");
+        // restart the timer
+        clearInterval(timer);
+        startTimer();
+        //**************************************************************************** */
+        //randomly shuffles the cards again
+        shuffleCards();
+
     });
 });
 
+//shuffle all cards randomally on the board
+function shuffleCards() {
+    //shuffle all images 
+    shuffle(images);
+    //distribute images on the board
+    for (var i = 0; i < cards.length; i++) {
+        $(cards[i]).find("img").attr("src", images[i]);
+    }
+}
+
+//start the timer ( source:https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript)
+function startTimer() {
+    var minutesLabel = document.getElementById("minutes");
+    var secondsLabel = document.getElementById("seconds");
+    var totalSeconds = 0;
+    timer = setInterval(setTime, 1000);
+
+    function setTime() {
+        ++totalSeconds;
+        secondsLabel.innerHTML = pad(totalSeconds % 60);
+        minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+    }
+}
+
+function pad(val) {
+    var valString = val + "";
+    if (valString.length < 2) {
+        return "0" + valString;
+    } else {
+        return valString;
+    }
+}
 //open a card
 function openCard(card) {
     if (numOpened <= 1) {
@@ -126,9 +164,9 @@ function shuffle(array) {
 }
 //display number of moves:
 function displayMoves() {
-    $("span").text(moves);
+    $(".moves").text(moves);
 }
-
+//The game displays a star rating (from 1-3) that reflects the player's performance. 
 //display stars: the game starts with 3 stars and after 10 moves the user loses a star and after 6  more the
 //user loses one  more.  one star is the lowest rating.
 function displayStars() {
@@ -138,6 +176,12 @@ function displayStars() {
         $(" ul li:nth-child(2)").css("display", "none");
     }
 }
+//Congratulations Popup:
+//When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. 
+//It should also tell the user how much time it took to win the game, and what the star rating was.
+
+
+
 
 //an animation function with callback to use a list of animations from this library:
 // A cross-browser library of CSS animations. As easy to use as an easy thing. http://daneden.github.io/animate.css
