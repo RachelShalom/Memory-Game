@@ -33,6 +33,9 @@ $(".card").on("click", function() {
                     match(openedCards[0], openedCards[1]);
                     displayMoves();
                     displayStars();
+                    if ($(".matched-card").length === 2) {
+                        alert("congrats! would youlike to play again?");
+                    }
                 });
                 //otherwise cards are closed
             } else {
@@ -49,6 +52,7 @@ $(".card").on("click", function() {
             numOpened = 0;
         }
     }
+
 });
 
 
