@@ -5,6 +5,8 @@ let images = ["https://source.unsplash.com/rqABly7c9j0", "https://source.unsplas
     "https://source.unsplash.com/DoSDQvzjeH0", "https://source.unsplash.com/xaxIzsDQUJM", "https://source.unsplash.com/lElegSg89Ds",
     "https://source.unsplash.com/DwhK2zGMdy0", "https://source.unsplash.com/A3ZOLkgomZE"
 ];
+// a varuable to count the number of moves
+var moves = 0;
 // a variable to count the number of opened cards
 var numOpened = 0;
 //a node list of all cards that are opened
@@ -17,24 +19,29 @@ shuffle(images);
 for (var i = 0; i < cards.length; i++) {
     $(cards[i]).find("img").attr("src", images[i]);
 }
-
+// when user click a card:
 $(".card").on("click", function() {
-    //open a card when user clicks
+    //open the card 
     if (!$(this).find("img").hasClass("matched-card")) {
         openCard($(this).find("img"));
         if (numOpened === 2) {
+            moves++;
             //get all opened card
             openedCards = $(".card-opened");
-            //if there is a match between the two cards ...... otherwise
+            //if there is a match between the two cards, the cards are in a "match" stae: opened and unclickable
             if (hasMatch(openedCards[0], openedCards[1])) {
                 openedCards.animateCss("bounceIn", function() {
                     match(openedCards[0], openedCards[1]);
+                    displayMoves();
+                    displayStars();
                 });
+                //otherwise cards are closed
             } else {
-                openedCards.parent().css(" background-image", "#ffffff");
                 openedCards.animateCss('jello', function() {
                     openedCards.fadeOut(function() {
                         closeCards(openedCards[0], openedCards[1]);
+                        displayMoves();
+                        displayStars();
                     });
                 });
 
@@ -44,6 +51,24 @@ $(".card").on("click", function() {
         }
     }
 });
+
+
+
+
+// restart the game when user click the restart button
+$(".restart").on("click", function() {
+    //close all cards
+    $(".card").find("img").fadeOut(function() {
+        $(".card").find("img").removeClass("matched-card card-opened");
+        $(".card").find("img").addClass("card-closed");
+        //initiate the number of moves
+        moves = 0;
+        displayMoves();
+        // initiate the number of stars to be 3
+        $("ul li").css("display", "inline-block");
+    });
+});
+
 //open a card
 function openCard(card) {
     if (numOpened <= 1) {
@@ -99,6 +124,21 @@ function shuffle(array) {
 
     return array;
 }
+//display number of moves:
+function displayMoves() {
+    $("span").text(moves);
+}
+
+//display stars: the game starts with 3 stars and after 10 moves the user loses a star and after 6  more the
+//user loses one  more.  one star is the lowest rating.
+function displayStars() {
+    if (moves === 2) {
+        $(" ul li:last-child").css("display", "none");
+    } else if (moves === 16) {
+        $(" ul li:nth-child(2)").css("display", "none");
+    }
+}
+
 //an animation function with callback to use a list of animations from this library:
 // A cross-browser library of CSS animations. As easy to use as an easy thing. http://daneden.github.io/animate.css
 $.fn.extend({

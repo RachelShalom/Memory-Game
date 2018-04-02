@@ -36,6 +36,7 @@ h1 {
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
+    background-image: linear-gradient(to bottom, #f27d12, #fc9b00, #ffbb00, #ffda00, #fffa0b);
 }
 
 .score-panel .restart {
@@ -81,10 +82,14 @@ h1 {
 .card img {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .card-closed {
+    display: none;
+}
+
+.delete-star {
     display: none;
 }
 
