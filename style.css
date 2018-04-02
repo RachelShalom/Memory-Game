@@ -15,6 +15,11 @@ h1 {
     font-weight: 300;
 }
 
+#timer {
+    display: inline-block;
+    margin-right: 10px;
+}
+
 
 /*
  * Styles for the Score Panel
