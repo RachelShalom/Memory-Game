@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     color: rgb(6, 90, 86);
-    width: 100%;
+    width: auto;
     height: 100%
 }
 
@@ -29,7 +29,7 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 100;
+    width: 100%;
     max-width: 345px;
     margin-bottom: 10px;
 }
