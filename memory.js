@@ -27,11 +27,15 @@ $(".card").on("click", function() {
             openedCards = $(".card-opened");
             //if there is a match between the two cards ...... otherwise
             if (hasMatch(openedCards[0], openedCards[1])) {
-                match(openedCards[0], openedCards[1]);
+                openedCards.animateCss("bounceIn", function() {
+                    match(openedCards[0], openedCards[1]);
+                });
             } else {
-                openedCards.addClass("animated bounce");
-                openedCards.fadeOut("slow", function() {
-                    closeCards(openedCards[0], openedCards[1]);
+                openedCards.parent().css(" background-image", "#ffffff");
+                openedCards.animateCss('jello', function() {
+                    openedCards.fadeOut(function() {
+                        closeCards(openedCards[0], openedCards[1]);
+                    });
                 });
 
             }
@@ -40,13 +44,10 @@ $(".card").on("click", function() {
         }
     }
 });
-
-
-
 //open a card
 function openCard(card) {
     if (numOpened <= 1) {
-        $(card).fadeIn("slow", function(event) {
+        $(card).fadeIn(function(event) {
             $(this).removeClass("card-closed");
         });
         $(card).addClass("card-opened");
@@ -83,15 +84,6 @@ function hasMatch(card1, card2) {
     return false;
 }
 
-
-
-
-
-
-
-
-
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length,
@@ -107,3 +99,31 @@ function shuffle(array) {
 
     return array;
 }
+//an animation function with callback to use a list of animations from this library:
+// A cross-browser library of CSS animations. As easy to use as an easy thing. http://daneden.github.io/animate.css
+$.fn.extend({
+    animateCss: function(animationName, callback) {
+        var animationEnd = (function(el) {
+            var animations = {
+                animation: 'animationend',
+                OAnimation: 'oAnimationEnd',
+                MozAnimation: 'mozAnimationEnd',
+                WebkitAnimation: 'webkitAnimationEnd',
+            };
+
+            for (var t in animations) {
+                if (el.style[t] !== undefined) {
+                    return animations[t];
+                }
+            }
+        })(document.createElement('div'));
+
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+
+            if (typeof callback === 'function') callback();
+        });
+
+        return this;
+    },
+});
