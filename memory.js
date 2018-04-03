@@ -200,7 +200,6 @@ function shuffle(array) {
 function displayMoves() {
     $(".moves").text(moves);
 }
-//The game displays a star rating (from 1-3) that reflects the player's performance. 
 //display stars: the game starts with 3 stars and after 10 moves the user loses a star and after 6  more the
 //user loses one  more.  one star is the lowest rating.
 function displayStars() {
