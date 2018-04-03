@@ -44,7 +44,7 @@ $(".card").on("click", function() {
                     displayMoves();
                     displayStars();
                     //check if the Game ended. Are all cards Matched?
-                    if ($(".matched-card").length === 2) {
+                    if ($(".matched-card").length === images.length) {
                         //if yes then present the popup message to the user
                         Popup();
                     }
