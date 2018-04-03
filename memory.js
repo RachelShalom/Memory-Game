@@ -11,6 +11,9 @@ let images = ["images/cat.jpg", "images/cow.jpg", "images/dog.jpg", "images/fish
     "images/dog.jpg", "images/fish.jpg", "images/horse.jpg",
     "images/wolf.jpg", "images/parrot.jpg", "images/zebra.jpg"
 ];
+var currentImages = [];
+//the number of games  played in one session 
+var numGames = 1;
 var timer;
 // a varuable to count the number of moves
 var moves = 0;
@@ -41,7 +44,7 @@ $(".card").on("click", function() {
                     displayMoves();
                     displayStars();
                     //check if the Game ended. Are all cards Matched?
-                    if ($(".matched-card").length === images.length) {
+                    if ($(".matched-card").length === 2) {
                         //if yes then present the popup message to the user
                         Popup();
                     }
@@ -74,6 +77,7 @@ $(".card").on("click", function() {
 $(".restart").on("click", restart);
 $("#play-again").on("click", function() {
     $(".modal").fadeOut();
+    numGames++;
     restart();
 });
 
@@ -101,11 +105,17 @@ function restart() {
 
 //shuffle all cards randomally on the board
 function shuffleCards() {
-    //shuffle all images 
-    shuffle(images);
+    // the images of the game changes every second time
+    if (numGames % 2 === 0) {
+        currentImages = images1;
+    } else {
+
+        currentImages = images;
+    }
+    shuffle(currentImages);
     //distribute images on the board
     for (var i = 0; i < cards.length; i++) {
-        $(cards[i]).find("img").attr("src", images[i]);
+        $(cards[i]).find("img").attr("src", currentImages[i]);
     }
 }
 
