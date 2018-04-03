@@ -1,9 +1,15 @@
 // array of cards images
-let images = ["https://source.unsplash.com/rqABly7c9j0", "https://source.unsplash.com/3QK6nwhoJGM", "https://source.unsplash.com/wfBvWR3dCqw",
+let images1 = ["https://source.unsplash.com/rqABly7c9j0", "https://source.unsplash.com/3QK6nwhoJGM", "https://source.unsplash.com/wfBvWR3dCqw",
     "https://source.unsplash.com/DoSDQvzjeH0", "https://source.unsplash.com/xaxIzsDQUJM", "https://source.unsplash.com/lElegSg89Ds",
     "https://source.unsplash.com/DwhK2zGMdy0", "https://source.unsplash.com/A3ZOLkgomZE", "https://source.unsplash.com/rqABly7c9j0", "https://source.unsplash.com/3QK6nwhoJGM", "https://source.unsplash.com/wfBvWR3dCqw",
     "https://source.unsplash.com/DoSDQvzjeH0", "https://source.unsplash.com/xaxIzsDQUJM", "https://source.unsplash.com/lElegSg89Ds",
     "https://source.unsplash.com/DwhK2zGMdy0", "https://source.unsplash.com/A3ZOLkgomZE"
+];
+
+let images = ["images/cat.jpg", "images/cow.jpg", "images/dog.jpg", "images/fish.jpg", "images/horse.jpg",
+    "images/wolf.jpg", "images/parrot.jpg", "images/zebra.jpg", "images/cat.jpg", "images/cow.jpg",
+    "images/dog.jpg", "images/fish.jpg", "images/horse.jpg",
+    "images/wolf.jpg", "images/parrot.jpg", "images/zebra.jpg"
 ];
 var timer;
 // a varuable to count the number of moves
@@ -35,7 +41,7 @@ $(".card").on("click", function() {
                     displayMoves();
                     displayStars();
                     //check if the Game ended. Are all cards Matched?
-                    if ($(".matched-card").length === 2) {
+                    if ($(".matched-card").length === images.length) {
                         //if yes then present the popup message to the user
                         Popup();
                     }

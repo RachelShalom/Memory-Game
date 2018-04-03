@@ -92,7 +92,7 @@ h1 {
 .card {
     background-image: linear-gradient(to right bottom, #051a37, #002b3f, #003a3c, #284738, #4a513a);
     width: 24%;
-    margin-top: 1%;
+    margin-top: 0.5%;
     height: 125px;
     border-radius: 8px;
     cursor: pointer;

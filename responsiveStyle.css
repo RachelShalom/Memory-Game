@@ -1,9 +1,49 @@
-@media screen and (min-width:10px)and (max-width:500px) {
+@media screen and (min-width:321px)and (max-width:500px) {
+    body {
+        background: rgb(192, 219, 192);
+    }
+    header h1 {
+        font-size: 1.5em;
+        -webkit-margin-after: 0.5em;
+    }
+    .score-panel {
+        width: 96%;
+        padding: 0 2%;
+    }
     .board-contaniner {
         height: 100%;
         padding: 1% 2%;
+        background-image: none;
     }
     .card {
-        height: 100px;
+        height: 110px;
+    }
+    .card img {
+        max-width: 100%;
+    }
+}
+
+@media screen and (min-width:1px)and (max-width:320px) {
+    body {
+        background: rgb(192, 219, 192);
+    }
+    header h1 {
+        font-size: 1.5em;
+        -webkit-margin-after: 0.5em;
+    }
+    .score-panel {
+        width: 96%;
+        padding: 0 2%;
+    }
+    .board-contaniner {
+        height: 100%;
+        padding: 1% 2%;
+        background-image: none;
+    }
+    .card {
+        height: 90px;
+    }
+    .card img {
+        max-width: 100%;
     }
 }
