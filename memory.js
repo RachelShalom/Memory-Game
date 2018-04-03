@@ -204,7 +204,7 @@ function displayMoves() {
 //display stars: the game starts with 3 stars and after 10 moves the user loses a star and after 6  more the
 //user loses one  more.  one star is the lowest rating.
 function displayStars() {
-    if (moves === 2) {
+    if (moves === 10) {
         $(" ul li:last-child").css("display", "none");
     } else if (moves === 16) {
         $(" ul li:nth-child(2)").css("display", "none");
