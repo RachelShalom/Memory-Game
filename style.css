@@ -126,7 +126,7 @@ h1 {
 }
 
 .modal {
-    display: inline-block;
+    display: none;
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
