@@ -4,7 +4,6 @@ body {
     padding: 0;
     color: rgb(6, 90, 86);
     width: auto;
-    height: 100%
 }
 
 body {
@@ -34,12 +33,28 @@ h1 {
     margin-bottom: 10px;
 }
 
+
+/* for popup message */
+
+.modal-content .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+
+/* for score panel */
+
 .score-panel .stars {
     margin: 0;
     padding: 0;
     display: inline-block;
     margin: 0 5px 0 0;
 }
+
+
+/* for score panel */
 
 .score-panel .stars li {
     list-style: none;
@@ -108,4 +123,73 @@ h1 {
 
 .card-opened {
     background-image: crimson;
+}
+
+.modal {
+    display: inline-block;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Black w/ opacity */
+}
+
+.modal-content {
+    text-align: center;
+    background-color: #fefefe;
+    margin: 10% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+}
+
+
+/* stars desugn for popup message */
+
+.modal-content .stars li {
+    list-style: none;
+    display: inline-block;
+    background-image: linear-gradient(to bottom, #f27d12, #fc9b00, #ffbb00, #ffda00, #fffa0b);
+}
+
+
+/* stars design for popup message */
+
+.modal-content .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+#play-again {
+    -webkit-border-radius: 13;
+    -moz-border-radius: 13;
+    border-radius: 13px;
+    -webkit-box-shadow: 0px 1px 3px #666666;
+    -moz-box-shadow: 0px 1px 3px #666666;
+    box-shadow: 0px 1px 3px #666666;
+    font-family: 'Coda', cursive;
+    color: #ffffff;
+    font-size: 12px;
+    background: #0b3610;
+    padding: 8px 18px 8px 18px;
+}
+
+#play-again:hover {
+    background: #085e4d;
 }

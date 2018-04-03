@@ -20,7 +20,7 @@ startTimer();
 
 // when user click a card:
 $(".card").on("click", function() {
-    //open the card 
+    //open a card only if it is not a "matched" card
     if (!$(this).find("img").hasClass("matched-card")) {
         openCard($(this).find("img"));
         if (numOpened === 2) {
@@ -29,14 +29,19 @@ $(".card").on("click", function() {
             openedCards = $(".card-opened");
             //if there is a match between the two cards, the cards are in a "match" stae: opened and unclickable
             if (hasMatch(openedCards[0], openedCards[1])) {
-                openedCards.animateCss("bounceIn", function() {
+                $(openedCards[0]).animateCss("bounceIn");
+                $(openedCards[1]).animateCss("bounceIn", function() {
                     match(openedCards[0], openedCards[1]);
                     displayMoves();
                     displayStars();
+                    //check if the Game ended. Are all cards Matched?
                     if ($(".matched-card").length === 2) {
-                        alert("congrats! would youlike to play again?");
+                        //if yes then present the popup message to the user
+                        Popup();
                     }
+
                 });
+
                 //otherwise cards are closed
             } else {
                 openedCards.animateCss('jello', function() {
@@ -48,6 +53,7 @@ $(".card").on("click", function() {
                 });
 
             }
+
             //initialize number of opened cards to be 0
             numOpened = 0;
         }
@@ -58,8 +64,15 @@ $(".card").on("click", function() {
 
 
 //A restart button allows the player to reset the game board, the timer, and the star rating.
-// restart the game when user click the restart button
-$(".restart").on("click", function() {
+// display:none the popup and restart the game when user click the restart button
+$(".restart").on("click", restart);
+$("#play-again").on("click", function() {
+    $(".modal").fadeOut();
+    restart();
+});
+
+//function to restart the game
+function restart() {
     //close all cards
     $(".card").find("img").fadeOut(function() {
         $(".card").find("img").removeClass("matched-card card-opened");
@@ -77,7 +90,8 @@ $(".restart").on("click", function() {
         shuffleCards();
 
     });
-});
+}
+
 
 //shuffle all cards randomally on the board
 function shuffleCards() {
@@ -184,9 +198,13 @@ function displayStars() {
 //When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. 
 //It should also tell the user how much time it took to win the game, and what the star rating was.
 
-
-
-
+function Popup() {
+    //display the number of moves on the popups
+    $("#moveCount").text(moves);
+    console.log($("#moveCount").text());
+    //show the popup modal
+    $(".modal").fadeIn();
+}
 //an animation function with callback to use a list of animations from this library:
 // A cross-browser library of CSS animations. As easy to use as an easy thing. http://daneden.github.io/animate.css
 $.fn.extend({
