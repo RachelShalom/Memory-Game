@@ -1,0 +1,9 @@
+@media screen and (min-width:10px)and (max-width:500px) {
+    .board-contaniner {
+        height: 100%;
+        padding: 1% 2%;
+    }
+    .card {
+        height: 100px;
+    }
+}

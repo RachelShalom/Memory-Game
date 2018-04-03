@@ -79,7 +79,7 @@ h1 {
     flex-wrap: wrap;
     width: 100%;
     max-width: 660px;
-    min-height: 680px;
+    height: 680px;
     background-image: linear-gradient(to bottom, #f5fffb, #f6fffa, #f8fef8, #fafef8, #fbfdf7);
     padding: 32px;
     border-radius: 10px;
