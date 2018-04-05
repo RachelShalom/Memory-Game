@@ -18,9 +18,9 @@ The game has 2 themes: Fruits and Animals. Animals will be displayed every odd n
 Fruits will be displayed every even number of game the user played in the same session
 
 ##The game is Built with##
--[bootstrap/font-awesome](https://www.bootstrapcdn.com/fontawesome/)
--[animateCss](https://daneden.github.io/animate.css/)
--[Jquery](https://code.jquery.com/)
+- [bootstrap/font-awesome](https://www.bootstrapcdn.com/fontawesome/)
+- [animateCss](https://daneden.github.io/animate.css/)
+- [Jquery](https://code.jquery.com/)
 
 [Use this link if you want to play :v:](https://rachelshalom.github.io/Memory-Game/)
 
