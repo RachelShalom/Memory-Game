@@ -15,7 +15,7 @@ var currentImages = [];
 //the number of games  played in one session 
 var numGames = 1;
 var timer;
-// a varuable to count the number of moves
+// a varuable to count the number of moves(move= click on two different cards)
 var moves = 0;
 // a variable to count the number of opened cards
 var numOpened = 0;
@@ -29,14 +29,14 @@ startTimer();
 
 // when user click a card:
 $(".card").on("click", function() {
-    //open a card only if it is not a "matched" card
-    if (!$(this).find("img").hasClass("matched-card")) {
+    //open a card only if it is not a "matched" card or already an opened card
+    if (!$(this).find("img").hasClass("matched-card") && !$(this).find("img").hasClass("card-opened")) {
         openCard($(this).find("img"));
         if (numOpened === 2) {
             moves++;
             //get all opened card
             openedCards = $(".card-opened");
-            //if there is a match between the two cards, the cards are in a "match" stae: opened and unclickable
+            //if there is a match between the two cards, the cards will be in a "match" state: opened and unclickable
             if (hasMatch(openedCards[0], openedCards[1])) {
                 $(openedCards[0]).animateCss("bounceIn");
                 $(openedCards[1]).animateCss("bounceIn", function() {
@@ -53,7 +53,8 @@ $(".card").on("click", function() {
 
                 //otherwise cards are closed
             } else {
-                openedCards.animateCss('jello', function() {
+                $(openedCards[0]).animateCss('jello');
+                $(openedCards[1]).animateCss('jello', function() {
                     openedCards.fadeOut(function() {
                         closeCards(openedCards[0], openedCards[1]);
                         displayMoves();
@@ -87,19 +88,21 @@ function restart() {
     $(".card").find("img").fadeOut(function() {
         $(".card").find("img").removeClass("matched-card card-opened");
         $(".card").find("img").addClass("card-closed");
-        //initiate the number of moves
-        moves = 0;
-        displayMoves();
-        // initiate the number of stars to be 3
-        $("ul li").css("display", "inline-block");
-        // restart the timer
-        clearInterval(timer);
-        startTimer();
-        //**************************************************************************** */
-        //randomly shuffles the cards again
-        shuffleCards();
-
+        //****************************************************** 
     });
+    //initiate the number of moves
+    moves = 0;
+    //initiate the number of opened cards
+    numOpened = 0;
+    displayMoves();
+    // initiate the number of stars to be 3
+    $("ul li").css("display", "inline-block");
+    // restart the timer
+    clearInterval(timer);
+    startTimer();
+    //**********************
+    //randomly shuffles the cards again
+    shuffleCards();
 }
 
 
